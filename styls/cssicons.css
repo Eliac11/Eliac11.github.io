@@ -1,0 +1,55 @@
+﻿.container {
+    position: relative;
+    height: 50vh;
+    background-color: #00ff90;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.social {
+    color: #ffffff;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 10%;
+}
+.social__item {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.git:hover {
+    box-shadow: 0 0 10px #000000,0 0 50px #000000;
+    border-color: #000000;
+    color: #000000;
+    transition: 1s;
+}
+
+.vk:hover {
+    box-shadow: 0 0 10px #2787f5,0 0 50px #2787f5;
+    border-color: #2787f5;
+    color: #2787f5;
+    transition: 1s;
+}
+.faceb:hover {
+    box-shadow: 0 0 10px #3b5998,0 0 50px #3b5998;
+    border-color: #3b5998;
+    color: #3b5998;
+    transition: 1s;
+}
+.insta:hover {
+    box-shadow: 0 0 10px #ef4c5d,0 0 50px #ef4c5d;
+    border-color: #ef4c5d;
+    color: #ef4c5d;
+    transition: 1s;
+}
+    

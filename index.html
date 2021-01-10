@@ -5,7 +5,13 @@
     <title>RAFN 2</title>
     <link rel="stylesheet" href="styls/cssbutton.css">
     <link rel="stylesheet" href="styls/cssimgs.css">
+    <link rel="stylesheet" href="styls/cssicons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -19,9 +25,9 @@
     </style>
 </head>
 <body>
-    <div>Совершенно новый прорывной хоррор от молодой инди студии</div>
+    <div style="color: #b6ff00">Совершенно новый прорывной хоррор от молодой инди студии</div>
 
-    <h1><b>RAFN 2</b></h1>
+    <h1 style=" color: #b6ff00; display: flex;justify-content: center; align-items: center;"><b>RAFN 2</b></h1>
     <table>
         <tr>
             <td><img class="wdth" src="imgs/game/1.png" alt="картинка" /></td>
@@ -30,7 +36,7 @@
             <td><img class="wdth" src="imgs/game/4.png" alt="картинка" /></td>
         </tr>
         <tr>
-            <td><img class="wdth" src="imgs/game/5.png" alt="картинка" /></td>
+            <td><img class="wdth" href="imgs/game/5.png" src="imgs/game/5.png" alt="картинка" /></td>
             <td><img class="wdth" src="imgs/game/6.png" alt="картинка" /></td>
             <td><img class="wdth" src="imgs/game/7.png" alt="картинка" /></td>
             <td><img class="wdth" src="imgs/game/8.png" alt="картинка" /></td>
@@ -55,7 +61,31 @@
             <span class="button__line button__line--left"></span>
             Скачать
         </a>
-        
+        <div class="container">
+            <div class="social">
+                <a href="https://github.com/Eliac11" class="social__item git">
+                    <div class="fa fa-github"></div>
+                </a>
+            </div>
+            <div class="social">
+                <a href="https://vk.com/id0" class="social__item vk">
+                    <div class="fa fa-vk"></div>
+                </a>
+            </div>
+            <div class="social">
+                <a class="social__item faceb">
+                    <div class="fa fa-facebook"></div>
+                </a>
+            </div>
+            <div class="social">
+                <a href="https://www.instagram.com/_postik_" class="social__item insta">
+                    <div class="fa fa-instagram"></div>
+                </a>
+            </div>
+
+        </div>
 </body>
+
+
 
 </html>

@@ -1,9 +1,15 @@
-﻿img.wdth {
+﻿.wdth {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    z-index: 0;
     margin: 0 auto;
-    width: 400px;
+    width: auto\9;
     transition: 1s;
 }
-.wdth:hover {
-    width: 500px;
-    transition: 1s;
-}
+    .wdth:hover {
+        box-shadow: 0 0 10px #b6ff00,0 0 50px #b6ff00;
+        width: 600px;
+        transition: 1s;
+    }
+    
