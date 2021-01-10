@@ -1,0 +1,9 @@
+﻿img.wdth {
+    margin: 0 auto;
+    width: 400px;
+    transition: 1s;
+}
+.wdth:hover {
+    width: 500px;
+    transition: 1s;
+}

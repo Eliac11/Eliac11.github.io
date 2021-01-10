@@ -1,0 +1,87 @@
+﻿.button {
+    margin: auto 10px;
+    position: relative;
+    color: #b6ff00;
+    padding: 15px 30px;
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 24px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+    .button:hover {
+        box-shadow: 0 0 10px #b6ff00,0 0 40px #b6ff00;
+        background-color: #b6ff00;
+        color: #000000;
+        transition: 1s;
+        transition-delay: 1s;
+    }
+
+.button__line{
+    position: absolute;
+    display: block;
+}
+
+
+
+/*верхняя*/
+.button__line--top{
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,transparent,#b6ff00);
+
+}.button:hover .button__line--top{
+     left: 100%;
+     transition: 1s;
+     transition-delay: 0.2s;
+ }
+
+
+
+/*нижняя*/
+.button__line--bottom {
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,#b6ff00,transparent);
+}.button:hover .button__line--bottom {
+    left: -100%;
+    transition: 1s;
+    transition-delay: 0.2s;
+}
+
+
+/*левая*/
+.button__line--left {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(0deg,transparent,#b6ff00);
+}
+
+.button:hover .button__line--left {
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0s;
+}
+
+
+/*правая*/
+.button__line--right {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,transparent,#b6ff00);
+}
+
+.button:hover .button__line--right {
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0s;
+}
