@@ -1,14 +1,17 @@
 ﻿.button {
-    margin: auto 10px;
+    margin:auto 45%;
     position: relative;
     color: #b6ff00;
     padding: 15px 30px;
     display: inline-block;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     text-decoration: none;
     font-size: 24px;
     overflow: hidden;
     transition: 0.5s;
+
+    font-size: 40px;
+
 }
     .button:hover {
         box-shadow: 0 0 10px #b6ff00,0 0 1000px #b6ff00;
