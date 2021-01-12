@@ -21,12 +21,11 @@
         transition-delay: 1s;
     }
 
-.button__line{
+
+.button__line {
     position: absolute;
     display: block;
 }
-
-
 
 /*верхняя*/
 .button__line--top {

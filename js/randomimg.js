@@ -1,2 +1,0 @@
-﻿document.getElementsByTagName('h2')
-

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styls/cssbutton.css">
     <link rel="stylesheet" href="styls/cssimgs.css">
     <link rel="stylesheet" href="styls/cssicons.css">
+    <link rel="stylesheet" href="styls/cssmenu.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
@@ -19,7 +20,6 @@
             <!-- display: flex; -->
             justify-content: center;
             align-items: center;
-            height: 100vh;
             font-family: Consolas;
             background-color: #0a0a0a;
         }
@@ -33,10 +33,42 @@
 
 </head>
 <body>
-    
-    <div style="color: #b6ff00">Совершенно новый прорывной хоррор от молодой инди студии</div>
 
-    <h1 style=" color: #b6ff00; display: flex;justify-content: center; align-items: center; font-size: 40px"><b>RAFN 2</b></h1>
+    <div id="upnf"></div>
+    <script src="upinfo.js"></script>
+
+    <div class="container--menu">
+        <div class="social--menu">
+            <a href="#" class="social__item--menu button--menu">
+                <span class="button__line--menu button__line--top--menu"></span>
+                <span class="button__line--menu button__line--bottom--menu"></span>
+                главная
+            </a>
+        </div>
+        <div class="social--menu">
+            <a href="#" class="social__item--menu button--menu">
+                <span class="button__line--menu button__line--top--menu"></span>
+                <span class="button__line--menu button__line--bottom--menu"></span>
+                инфо
+            </a>
+        </div>
+        <div class="social--menu">
+            <a href="#" class="social__item--menu button--menu">
+                <span class="button__line--menu button__line--top--menu"></span>
+                <span class="button__line--menu button__line--bottom--menu"></span>
+                форм
+            </a>
+        </div>
+        <div class="social--menu">
+            <a href="#" class="social__item--menu button--menu">
+                <span class="button__line--menu button__line--top--menu"></span>
+                <span class="button__line--menu button__line--bottom--menu"></span>
+                другое
+            </a>
+        </div>
+
+    </div>
+
     <table>
         <tr>
             <td><img class="wdth" src="imgs/game/1.png" alt="картинка" /></td>
@@ -70,35 +102,16 @@
         <span class="button__line button__line--left"></span>
         Скачать
     </a>
-    <div class="container">
-        <div class="social">
-            <a href="https://github.com/Eliac11" class="social__item git">
-                <div class="fa fa-github"></div>
-            </a>
-        </div>
-        <div class="social">
-            <a href="https://vk.com/id0" class="social__item vk">
-                <div class="fa fa-vk"></div>
-            </a>
-        </div>
-        <div class="social">
-            <a href="https://www.google.ru/search?newwindow=1&safe=strict&sxsrf=ALeKk03DfU_ibDVL72Pg5MCXdg7U8os5gA%3A1610302773844&source=hp&ei=NUX7X_nvMOmRrgTj3b2wBQ&q=facebook+%D0%B4%D0%BB%D1%8F+%D1%82%D1%83%D0%BF%D1%8B%D1%85&oq=facebook+%D0%B4%D0%BB%D1%8F+%D1%82%D1%83%D0%BF%D1%8B%D1%85&gs_lcp=CgZwc3ktYWIQAzoHCCMQ6gIQJzoJCCMQ6gIQJxATUIsOWIsOYK0eaAFwAHgAgAFNiAFNkgEBMZgBAKABAqABAaoBB2d3cy13aXqwAQo&sclient=psy-ab&ved=0ahUKEwi53sCm_ZHuAhXpiIsKHeNuD1YQ4dUDCAc&uact=5" class="social__item faceb">
-                <div class="fa fa-facebook"></div>
-            </a>
-        </div>
-        <div class="social">
-            <a href="https://www.instagram.com/_postik_" class="social__item insta">
-                <div class="fa fa-instagram"></div>
-            </a>
-        </div>
 
-    </div>
+    <div id="dwnnf"></div>
+    <script src="downinfo.js"></script>
+
     <script>
         var imgs = document.querySelectorAll("img.wdth")
 
         for (i = 0, len = imgs.length; i < len; ++i) {
-            
-            imgs[i].src = "imgs/game/" + String( randint(1,17)) +  ".png"
+
+            imgs[i].src = "imgs/game/" + String(randint(1, 17)) + ".png"
         }
     </script>
 </body>
