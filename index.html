@@ -24,8 +24,16 @@
             background-color: #0a0a0a;
         }
     </style>
+    <script>
+        function randint(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+
+
 </head>
 <body>
+    
     <div style="color: #b6ff00">Совершенно новый прорывной хоррор от молодой инди студии</div>
 
     <h1 style=" color: #b6ff00; display: flex;justify-content: center; align-items: center; font-size: 40px"><b>RAFN 2</b></h1>
@@ -37,7 +45,7 @@
             <td><img class="wdth" src="imgs/game/4.png" alt="картинка" /></td>
         </tr>
         <tr>
-            <td><img class="wdth" href="imgs/game/5.png" src="imgs/game/5.png" alt="картинка" /></td>
+            <td><img class="wdth" src="imgs/game/5.png" alt="картинка" /></td>
             <td><img class="wdth" src="imgs/game/6.png" alt="картинка" /></td>
             <td><img class="wdth" src="imgs/game/7.png" alt="картинка" /></td>
             <td><img class="wdth" src="imgs/game/8.png" alt="картинка" /></td>
@@ -85,6 +93,14 @@
         </div>
 
     </div>
+    <script>
+        var imgs = document.querySelectorAll("img.wdth")
+
+        for (i = 0, len = imgs.length; i < len; ++i) {
+            
+            imgs[i].src = "imgs/game/" + String( randint(1,17)) +  ".png"
+        }
+    </script>
 </body>
 
 
