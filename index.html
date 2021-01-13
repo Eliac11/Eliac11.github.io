@@ -9,21 +9,8 @@
     <link rel="stylesheet" href="styls/cssmenu.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    <link rel="stylesheet" href="styls/bodycss.css">
 
-        body {
-            margin: 0;
-            padding: 0;
-            <!-- display: flex; -->
-            justify-content: center;
-            align-items: center;
-            font-family: Consolas;
-            background-color: #0a0a0a;
-        }
-    </style>
     <script>
         function randint(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -37,37 +24,8 @@
     <div id="upnf"></div>
     <script src="upinfo.js"></script>
 
-    <div class="container--menu">
-        <div class="social--menu">
-            <a href="#" class="social__item--menu button--menu">
-                <span class="button__line--menu button__line--top--menu"></span>
-                <span class="button__line--menu button__line--bottom--menu"></span>
-                главная
-            </a>
-        </div>
-        <div class="social--menu">
-            <a href="#" class="social__item--menu button--menu">
-                <span class="button__line--menu button__line--top--menu"></span>
-                <span class="button__line--menu button__line--bottom--menu"></span>
-                инфо
-            </a>
-        </div>
-        <div class="social--menu">
-            <a href="#" class="social__item--menu button--menu">
-                <span class="button__line--menu button__line--top--menu"></span>
-                <span class="button__line--menu button__line--bottom--menu"></span>
-                форм
-            </a>
-        </div>
-        <div class="social--menu">
-            <a href="#" class="social__item--menu button--menu">
-                <span class="button__line--menu button__line--top--menu"></span>
-                <span class="button__line--menu button__line--bottom--menu"></span>
-                другое
-            </a>
-        </div>
-
-    </div>
+    <div id="mmenu"></div>
+    <script src="mainmenu.js"></script>
 
     <table>
         <tr>
@@ -95,13 +53,15 @@
             <td><img class="wdth" src="imgs/game/16.png" alt="картинка" /></td>
         </tr>
     </table>
-    <a href="https://www.youtube.com/watch?v=A1GdzEI1ebg" class="button">
-        <span class="button__line button__line--top"></span>
-        <span class="button__line button__line--right"></span>
-        <span class="button__line button__line--bottom"></span>
-        <span class="button__line button__line--left"></span>
-        Скачать
-    </a>
+    <div style="display:flex; justify-content:center; align-content:center; height: 10vh">
+        <a href="https://www.youtube.com/watch?v=A1GdzEI1ebg" class="button">
+            <span class="button__line button__line--top"></span>
+            <span class="button__line button__line--right"></span>
+            <span class="button__line button__line--bottom"></span>
+            <span class="button__line button__line--left"></span>
+            Скачать
+        </a>
+    </div>
 
     <div id="dwnnf"></div>
     <script src="downinfo.js"></script>
@@ -114,6 +74,7 @@
             imgs[i].src = "imgs/game/" + String(randint(1, 17)) + ".png"
         }
     </script>
+
 </body>
 
 

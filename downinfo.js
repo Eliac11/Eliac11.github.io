@@ -24,5 +24,8 @@
         </a>
     </div>
 
-</div>`);
+</div><div style = "background-color: #00ff90;display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 10vh;">ну как бы все</div>`); 
 

@@ -1,0 +1,14 @@
+﻿
+* {
+        box-sizing: border-box;
+    }
+
+body {
+    margin: 0;
+    padding: 0;
+    <!-- display: flex; -->
+    justify-content: center;
+    align-items: center;
+    font-family: Consolas;
+    background-color: #0a0a0a;
+}
