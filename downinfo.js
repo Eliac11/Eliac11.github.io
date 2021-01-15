@@ -3,6 +3,10 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="container">
+
+<canvas style="z-index: -1; position:absolute"></canvas>
+<script src="js/scriptDowninfo.js"></script>
+
     <div class="social">
         <a href="https://github.com/Eliac11" class="social__item git">
             <div class="fa fa-github"></div>

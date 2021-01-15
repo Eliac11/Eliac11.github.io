@@ -5,11 +5,8 @@
         dotMinRad: 5,
         dotMaxRad: 20,
         sphereRad: 350,
-        bigDotRad: 35,
         mouseSize: 120,
-        massFactor: 0.001,
         defColor: `rgba(250, 10, 30, 0.9)`,
-        smooth: 0.85,
     }
 
     const TWO_PI = 2 * Math.PI;
@@ -55,21 +52,6 @@
             }
 
 
-            let deltamouse = { x: mouse.x - dots[i].pos.x, y: mouse.y - dots[i].pos.y }
-            let distmouse = Math.sqrt(deltamouse.x * deltamouse.x + deltamouse.y * deltamouse.y) || 1;
-            let force = (distmouse - config.sphereRad) / distmouse * 0.1;
-
-            let alpha = config.mouseSize / distmouse;
-            dots[i].color = `rgba(250, 10, 30, ${alpha})`;
-
-            acc.x += deltamouse.x * force;
-            acc.y += deltamouse.y * force;
-
-            dots[i].rad += dots[i].dirrad;
-            if (dots[i].rad > config.dotMaxRad || dots[i].rad <= config.dotMinRad) {
-                dots[i].dirrad *= -1;
-            }
-
             dots[i].vel.x = dots[i].vel.x * config.smooth + acc.x * dots[i].mass;
             dots[i].vel.y = dots[i].vel.y * config.smooth + acc.y * dots[i].mass;
         }
@@ -93,20 +75,12 @@
         w = canvas.width = innerWidth;
         h = canvas.height = innerHeight;
 
-        mouse = { x: w / 2, y: h / 2, down: false }
+        mouse = { x: w / 2, y: h / 2 }
         dots = [];
     }
 
     function loop() {
         ctx.clearRect(0, 0, w, h);
-
-        if (mouse.down) {
-            dots.push(new Dot());
-            /*if (dots.length > config.Maxdot) {
-                dots.splice(6);
-            }*/
-            console.log(dots.length);
-        }
         updateDots();
 
         window.requestAnimationFrame(loop);
@@ -119,13 +93,9 @@
         [mouse.x, mouse.y] = [layerX, layerY];
     }
 
-    function isDown() {
-        mouse.down = !mouse.down;
-    }
+    
 
     canvas.addEventListener(`mousemove`, setPos);
-    window.addEventListener(`mousedown`, isDown);
-    window.addEventListener(`mouseup`, isDown);
 
     window.onresize = function () {
         w = canvas.width = innerWidth;
@@ -136,15 +106,10 @@
     
     canvas.ontouchmove = function (e) {
         setPos({ layerX: e.touches[0].pageX, layerY: e.touches[0].pageY });
-        return false;
     }
     window.ontouchstart = function (e) {
         setPos({ layerX: e.touches[0].pageX, layerY: e.touches[0].pageY });
-        isDown();
-        return false;
     }
-    window.ontouchend = function (e) {
-        isDown();
-    }
+    
 
 })();
