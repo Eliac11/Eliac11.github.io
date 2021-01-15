@@ -138,12 +138,12 @@
         setPos({ layerX: e.touches[0].pageX, layerY: e.touches[0].pageY });
         return false;
     }
-    canvas.ontouchstart = function (e) {
+    window.ontouchstart = function (e) {
         setPos({ layerX: e.touches[0].pageX, layerY: e.touches[0].pageY });
         isDown();
         return false;
     }
-    canvas.ontouchend = function (e) {
+    window.ontouchend = function (e) {
         isDown();
     }
 
