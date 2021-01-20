@@ -54,6 +54,24 @@
                 acc.y += delta.y * force;
             }
 
+            
+            //let deltax = 0 - dots[i].pos.x;
+            //let distx = Math.abs(deltax);
+            //let forcex = (distx -30) / distx * 0.3;
+            //acc.x += deltax * forcex;
+            //deltax = w - dots[i].pos.x;
+            //distx = Math.abs(deltax);
+            //forcex = (distx - 30) / distx * 0.3;
+            //acc.x += deltax * forcex;
+            //
+            //let deltay = 0 - dots[i].pos.y;
+            //let disty = Math.abs(deltay);
+            //let forcey = (disty - 30) / disty * 0.3;
+            //acc.y += deltay * forcey;
+            //deltay = h - dots[i].pos.y;
+            //disty = Math.abs(deltay);
+            //forcey = (disty - 30) / disty * 0.3;
+            //acc.y += deltay * forcey;
 
             let deltamouse = { x: mouse.x - dots[i].pos.x, y: mouse.y - dots[i].pos.y }
             let distmouse = Math.sqrt(deltamouse.x * deltamouse.x + deltamouse.y * deltamouse.y) || 1;
