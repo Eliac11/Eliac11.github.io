@@ -1,0 +1,61 @@
+﻿.maincon {
+    background-color: #00ff90;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+}
+
+.compname {
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    z-index: 0;
+    max-width:10%;
+    transition: 1s;
+}
+    .compname:hover {
+        z-index: 100;
+        transform: scale(1.5);
+        transition: 2s;
+    }
+
+#RS {
+    transition: 2s;
+}
+#RI {
+    transition: 2s;
+}
+#PE {
+    transition: 2s;
+}
+#PA {
+    transition: 2s;
+}
+
+#RS:hover {
+    box-shadow: 0 0 10px #fffa00,0 0 20px #fffa00;
+    background: #fffa00;
+    color: #000000;
+    transition: 2s;
+}
+#RI:hover {
+    box-shadow: 0 0 10px #fffa00,0 0 20px #fffa00;
+    background: #fffa00;
+    color: #000000;
+    transition: 2s;
+}
+
+#PE:hover {
+    box-shadow: 0 0 10px #000000,0 0 20px #000000;
+    background: #000000;
+    color: #ffffff;
+    transition: 2s;
+}
+
+#PA:hover {
+    box-shadow: 0 0 10px #000000,0 0 20px #000000;
+    background: #000000;
+    color: #ffffff;
+    transition: 2s;
+}
