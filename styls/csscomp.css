@@ -13,23 +13,40 @@
     z-index: 0;
     max-width:10%;
     transition: 1s;
+    white-space:nowrap;
 }
     .compname:hover {
         z-index: 100;
-        transform: scale(1.5);
         transition: 2s;
+        font-size: 18px;
     }
 
 #RS {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1%;
     transition: 2s;
 }
 #RI {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1%;
     transition: 2s;
 }
 #PE {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1%;
     transition: 2s;
 }
 #PA {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1%;
     transition: 2s;
 }
 
@@ -37,12 +54,14 @@
     box-shadow: 0 0 10px #fffa00,0 0 20px #fffa00;
     background: #fffa00;
     color: #000000;
+    width: 50%;
     transition: 2s;
 }
 #RI:hover {
     box-shadow: 0 0 10px #fffa00,0 0 20px #fffa00;
     background: #fffa00;
     color: #000000;
+    width: 50%;
     transition: 2s;
 }
 
@@ -50,6 +69,7 @@
     box-shadow: 0 0 10px #000000,0 0 20px #000000;
     background: #000000;
     color: #ffffff;
+    width: 50%;
     transition: 2s;
 }
 
@@ -57,5 +77,6 @@
     box-shadow: 0 0 10px #000000,0 0 20px #000000;
     background: #000000;
     color: #ffffff;
+    width: 50%;
     transition: 2s;
 }
