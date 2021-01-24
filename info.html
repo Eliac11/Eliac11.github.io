@@ -35,7 +35,30 @@
                 ну вот еще текстик поставлю его пониже аля дизайн его бы подлинее конечно сделать ну ладно нужно побольше текста но идей просто нет заполню тогда не отмысленным текстом что делать ппакпклпоукбпоуфыбонуыфкбпи апвнкпк кпкопфнкпдфкп епукпенф апфулгнфнапфлкп кнкппфыкшнпфа каплккупбобобобб аплфпунафлкгпфн укпыекршжфхарфшгкуп кпфдкпржфщкрпщгр ылкпфждкуи алпишфикп апифлдокип лыофаплкоиплпгф кплфгшкп кпф кпкпр лфгпшфгркшгпршфгпрщшпзцрп кпркшпгфщшрпрукщшпргпр крпкгпркгп и тут я понял что будут проблемы с переносом слов птмч они слишком длинные
             </div>
         </div>
+
+
+
     </div>
+
+    <div style="color:#ffffff; width:100%; font-size:5vh; display:flex; justify-content:center">Если хотите поддержать разработку, задонатьте нам на ассеты пж пж пж</div>
+    <div id="progresstext" style="color:#ffffff; width:100%; font-size:5vh; display:flex; justify-content:center">0/1000000000</div>
+    <div style="display:flex; justify-content:center; margin: 10px">
+        <div style="color:#ffffff; width:50%;height: 30px;  display:flex; justify-self:center; box-shadow: 0 0 10px #808080">
+            <div id="progress" style="color:#ffffff; width:30%;height: 100%;  display:flex; justify-self:center; background: #ff6a00"></div>
+        </div>
+
+    </div>
+    <script>
+        const prgtxt = document.getElementById("progresstext")
+        const prg = document.getElementById("progress")
+
+        var now =Math.ceil (( new Date().getTime() - 1611508178743) / 100000);
+        alert(now);
+        prgtxt.innerHTML = String(now) + " / 1000000000  руб."
+        prg.style.width = String(now)+"%"
+
+    </script>
+
 
     <div id="dwnnf"></div>
     <script src="downinfo.js"></script>

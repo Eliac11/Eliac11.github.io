@@ -80,3 +80,6 @@ pa.onmouseout = function () {
     pa.innerHTML = "PA"
 
 }
+
+//var now = new Date().getTime();
+//alert(now);

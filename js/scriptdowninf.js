@@ -37,3 +37,6 @@ pa.onmouseout = function () {
     pa.innerHTML = "PA"
 
 }
+
+var now = new Date();
+alert(now);
