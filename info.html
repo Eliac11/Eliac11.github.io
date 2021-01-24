@@ -52,9 +52,9 @@
         const prgtxt = document.getElementById("progresstext")
         const prg = document.getElementById("progress")
 
-        var now =Math.ceil (( new Date().getTime() - 1611508178743) / 100000);
-        prgtxt.innerHTML = String(now) + " / 1000000000  руб."
-        prg.style.width = String(now)+"%"
+        var now =( new Date().getTime() - 1611508178743) / 100000;
+        prgtxt.innerHTML = String(now.toFixed(2)) + " / 1000000000  руб."
+        prg.style.width = String(now.toFixed(4))+"%"
 
     </script>
 
