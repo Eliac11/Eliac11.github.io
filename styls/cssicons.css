@@ -52,4 +52,11 @@
     color: #ef4c5d;
     transition: 1s;
 }
-    
+
+
+.antipol:hover {
+    box-shadow: 0 0 10px #ff0000,0 0 50px #ff0000;
+    border-color: #ff0000;
+    color: #ff0000;
+    transition: 1s;
+}

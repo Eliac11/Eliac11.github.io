@@ -27,6 +27,11 @@
             <div class="fa fa-instagram"></div>
         </a>
     </div>
+    <div class="social">
+        <a href="https://vk.com/wehatesex" class="social__item antipol">
+          <i class="fa fa-users"></i>
+        </a>
+    </div>
 </div>
 <div class="maincon">
         <p>
