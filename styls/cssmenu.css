@@ -76,3 +76,78 @@
     transition: 0.5s;
     transition-delay: 0.2s;
 }
+
+
+
+.conmenu {
+    position: relative;
+    height: 10vh;
+    background-color: rgba(255, 0, 0, 0.45);
+    height: 10vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.dws--menu * {
+    margin: 0;
+    padding: 0;
+}
+
+.dws--menu ul,
+.dws--menu ol{
+    list-style: none;
+}
+
+.dws--menu > ul{
+    display: flex;
+    justify-content:center
+}
+
+    .dws--menu > ul li a {
+        color: #b6ff00;
+        display: block;
+        padding: 15px;
+        font-size: 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: 1s;
+    }
+
+.dws--menu > ul li {
+    position: relative;
+}
+
+.dws--menu > ul li > a i.fa{
+    position: absolute;
+    left: -10px;
+    font-size: 20px;
+    
+}
+.dws--menu li a:hover {
+    box-shadow: 0 0 10px #b6ff00,0 0 1000px #b6ff00;
+    background: #b6ff00;
+    color: #000000;
+    transition: 1s;
+    
+}
+
+
+.dws--menu li ul {
+    position: absolute;
+    display: none
+}
+.dws--menu li:hover > ul {
+    display:block;
+    z-index: 100;
+    transition: 1s;
+    background: #000000;
+    transition: 2s;
+}
+
+.dws--menu li > ul li ul {
+    position: absolute;
+    right: -150px;
+    top: 0;
+}
