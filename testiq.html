@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>RAFN 2</title>
+    <link rel="stylesheet" href="styls/cssbutton.css">
+    <link rel="stylesheet" href="styls/cssimgs.css">
+    <link rel="stylesheet" href="styls/cssicons.css">
+    <link rel="stylesheet" href="styls/cssmenu.css">
+    <link rel="stylesheet" href="styls/csscomp.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="styls/bodycss.css">
+
+    <script src="js/scriptdowninf.js" type="text/javascript"></script>
+    
+</head>
+<body>
+    <canvas style="position: fixed; overflow: hidden; justify-content:center; align-content:center; margin:0; z-index: -1; height: 100vh;"></canvas>
+    <script src="js/scriptsnow.js"></script>
+
+    <div id="upnf"></div>
+    <script src="upinfo.js"></script>
+
+    <div id="mmenu"></div>
+    <script src="mainmenu.js"></script>
+
+    <div style="height:auto;">
+        <div id="butt" style="font-size:55px; color: #ffffff; display:flex; justify-content:center; align-items:center;height:20vh;position: relative; ">
+            <a onclick="starttest()" style="text-decoration: none; color: #4cff00; border: dashed;">пройти тест</a>
+        </div>
+        <div id="result" style="color:#ffffff; width:50%; font-size:23px; justify-content:center; align-items:center; display:none;margin:5% 10%">мдаа видимо у тебя вообще IQ нет , раз ты повелся на тест какогото левого сайта <div style="font-size:10px">можешь попробывать пройти тест еще раз для улучшения результата</div></div>
+        <div id="prgbox" style="display:none; justify-content:center; margin: 10px; align-items:center">
+            <div style="color:#ffffff; width:50%;height: 30px;  display:flex; justify-self:center; box-shadow: 0 0 10px #808080">
+                <div id="progress" style="color:#ffffff; width:0%;height: 100%;  display:flex; justify-self:center; background: #ffffff"></div>
+            </div>
+
+        </div>
+
+
+    </div>
+    
+    <script>
+        function starttest() {
+            const prg = document.getElementById("progress");
+            const butt = document.getElementById("butt");
+            const prgbox = document.getElementById("prgbox");
+            const result = document.getElementById("result");
+
+            butt.style.display = "none";
+            prgbox.style.display = "flex";
+
+            
+            
+            
+            var z = 0;
+            var id = setInterval(frame, 10);
+            function frame() {
+                if (z > 100) {
+                    clearInterval(id);
+                    prgbox.style.display = "none"
+                    result.style.display = "flex"
+                    if (getCookie("numvisit") == "0") {
+
+                        result.innerHTML = "хах и что. ты думал результат изменится???"
+                        setCookie("numvisit", "1", { expires: Date(6) });
+                    }
+                    else {
+                        setCookie("numvisit", "0", { expires: Date(6) });
+                    }
+                }
+                z += Math.random()**2 * 100;
+                prg.style.width = String(z) + "%";
+            }
+            
+        }
+        function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function setCookie(name, value, options = {}) {
+
+    options = {
+        path: '/',
+        // при необходимости добавьте другие значения по умолчанию
+        ...options
+    };
+
+    if (options.expires instanceof Date) {
+        options.expires = options.expires.toUTCString();
+    }
+
+    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+    for (let optionKey in options) {
+        updatedCookie += "; " + optionKey;
+        let optionValue = options[optionKey];
+        if (optionValue !== true) {
+            updatedCookie += "=" + optionValue;
+        }
+    }
+
+    document.cookie = updatedCookie;
+}
+    </script>
+    <div id="dwnnf"></div>
+    <script src="downinfo.js"></script>
+</body>
+
+</html>

@@ -40,7 +40,7 @@ mmenu.insertAdjacentHTML("afterend", `<div class="conmenu">
                     <ul>
                         <li><a href="over1.html">шарики</a></li>
                         <li><a href="#">еще продукты</a></li>
-                        <li><a href="#">тест на айкю</a></li>
+                        <li><a href="testiq.html">тест на айкю</a></li>
                     </ul>
                 </li>
             </ul>
