@@ -29,7 +29,7 @@
         <div id="butt" style="font-size:55px; color: #ffffff; display:flex; justify-content:center; align-items:center;height:20vh;position: relative; ">
             <a onclick="starttest()" style="text-decoration: none; color: #4cff00; border: dashed;">пройти тест</a>
         </div>
-        <div id="result" style="color:#ffffff; width:50%; font-size:23px; justify-content:center; align-items:center; display:none;margin:5% 10%">мдаа видимо у тебя вообще IQ нет , раз ты повелся на тест какогото левого сайта <div style="font-size:10px">можешь попробывать пройти тест еще раз для улучшения результата</div></div>
+        <div id="result" style="color:#ffffff; width:50%; font-size:23px; justify-content:center; align-items:center; display:none;margin:5% 10%">мдаа видимо у тебя вообще IQ нет , раз ты повелся на тест какогото левого сайта <div><a href="testiq.html" style="font-size:10px; text-decoration:none; color:azure;">можешь попробывать пройти тест еще раз для улучшения результата</a></div></div>
         <div id="prgbox" style="display:none; justify-content:center; margin: 10px; align-items:center">
             <div style="color:#ffffff; width:50%;height: 30px;  display:flex; justify-self:center; box-shadow: 0 0 10px #808080">
                 <div id="progress" style="color:#ffffff; width:0%;height: 100%;  display:flex; justify-self:center; background: #ffffff"></div>
@@ -69,7 +69,7 @@
                         setCookie("numvisit", "0", { expires: Date(6) });
                     }
                 }
-                z += Math.random()**2 * 0.15;
+                z += Math.random()**2 * 0.9;
                 prg.style.width = String(z) + "%";
             }
             

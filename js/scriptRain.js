@@ -11,7 +11,7 @@
         defColor: `rgba(0, 0, 255, 0.81)`,
         smooth: 0.85,
         velX: random(-2, 2),
-        velY:random(1,5) ,
+        velY:random(4,6) ,
     }
 
     const TWO_PI = 2 * Math.PI;
