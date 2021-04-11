@@ -22,7 +22,7 @@
 
     class Dot { 
         constructor(r) {
-            this.pos = { x: random(-20, w+20), y: -10 - random(0, 2000) }
+            this.pos = { x: random(-50, w+50), y: -10 - random(0, 2000) }
             this.vel = { x: config.velX, y: config.velY}
             this.rad = r || random(config.dotMinRad, config.dotMaxRad);
             this.mass = this.rad * config.massFactor;
