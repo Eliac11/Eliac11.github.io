@@ -1,1 +1,16 @@
-﻿
+﻿.startbutton {
+    box-shadow: 0 0 10px aquamarine,0 0 50px aquamarine,0 0 500px aquamarine;
+    color: aliceblue;
+    width: auto;
+    background-color: aquamarine;
+    position: relative;
+    font-size: 500%;
+    transition: 1s;
+}
+    .startbutton:hover {
+        box-shadow: 0 0 10px aliceblue,0 0 50px aliceblue,0 0 500px aliceblue;
+        font-size: 600%;
+        transition: 1s;
+        color: aquamarine;
+        background-color: aliceblue;
+    }
