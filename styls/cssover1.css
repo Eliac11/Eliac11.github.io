@@ -1,4 +1,5 @@
 ﻿.startbutton {
+    display: inline-block;
     box-shadow: 0 0 10px aquamarine,0 0 50px aquamarine,0 0 500px aquamarine;
     color: aliceblue;
     width: auto;
@@ -6,6 +7,8 @@
     position: relative;
     font-size: 500%;
     transition: 1s;
+    animation:  bulbul alternate infinite;
+    animation-duration: 5s;
 }
     .startbutton:hover {
         box-shadow: 0 0 10px aliceblue,0 0 50px aliceblue,0 0 500px aliceblue;
@@ -13,4 +16,14 @@
         transition: 1s;
         color: aquamarine;
         background-color: aliceblue;
+        animation-name: none;
     }
+
+@keyframes bulbul{
+    0% {
+       transform:scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
