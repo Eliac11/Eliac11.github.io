@@ -35,7 +35,7 @@ mmenu.insertAdjacentHTML("afterend", `<div class="conmenu">
             <ul>
                 <li><a href="index.html">главная</a></li>
                 <li><a href="info.html">инфо</a></li>
-                <li><a href="forum.html">фоурм</a></li>
+                <li><a href="forum.html">форум</a></li>
                 <li><a>другое</a>
                     <ul>
                         <li><a href="over1.html">шарики</a></li>
