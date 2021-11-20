@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>PEPA</title>
+    <style >
+        body{
+            margin:0;
+            padding:0;
+        }
+        .logocon{
+            width:100%;
+            height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+            align-items:center;
+
+            transition: 1s;
+        }
+
+        .mylogo {
+            transition: 1s;
+            width: 50%;
+        }
+        .logocon:hover {
+            transition: 3s;
+            background-color:black;
+        }
+            .logocon:hover .mylogo {
+                fill: white;
+                transition: 3s;
+            }
+
+                .logocon .mylogo line{
+                    transition: 1s;
+                }
+        .logocon:hover .mylogo line {
+            stroke: white;
+            stroke-width: 15;
+            transition: 3s;
+        }
+    </style>
+</head>
+<body>
+    <div style="height: 20vh;
+        font-size: 300%;
+        text-align: center;
+        line-height: 20vh
+    ">Варианты лого</div>
+    <div id="mainCont">
+        
+
+    </div>
+
+    <script src="logos/logos.js"></script>
+
+    <script>
+        var con = document.querySelector("#mainCont");
+
+        con.innerHTML += `<div class="logocon">` + logo1 + `</div>`;
+        con.innerHTML += `<div class="logocon">` + logo2 + `</div>`;
+        con.innerHTML += `<div class="logocon">` + logo3 + `</div>`;
+        con.innerHTML += `<div class="logocon">` + logo4 + `</div>`;
+        con.innerHTML += `<div class="logocon">` + logo5 + `</div>`;
+    </script>
+</body>
+</html>
