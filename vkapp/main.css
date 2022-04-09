@@ -35,3 +35,10 @@ ol {
     border-radius: 2em;
     transition: all .3s ease-out;
     }
+
+#maindiv{
+padding: 30px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
