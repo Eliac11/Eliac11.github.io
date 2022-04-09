@@ -3,11 +3,44 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
     <title>VKApp</title>
 </head>
 
 <body>
-    fghfghfgh
+
+    <div id="app">
+
+
+    <div>
+        Выберите Локацию:
+    </div>
+    <div>
+        <ol>
+        <li v-for="item in listloc">
+            <a href="#">{{ item }}</a>
+        </li>
+    </ol>
+    </div>
+
+</div>
+
+
+
+
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="script.js"></script>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            listloc:locations
+          }
+        }
+      }).mount('#app')
+    </script>
+
 </body>
 
 </html>
