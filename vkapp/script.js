@@ -21,4 +21,4 @@ locations = [
 "Выставка кошек",
 ]
 
-console.log(locations)
+
