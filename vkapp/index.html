@@ -13,58 +13,63 @@
     <div id="app">
 
 
-    <div style="text-align: center; font-size: 30px;">
-        Выберите Локацию:
-    </div>
-    <div id="maindiv">
-        <div style="width: 50%;">
-          <ol>
-            <li v-for="item in listloc">
-                <a href="#" @click="(event) => choiseloc(item,event)">{{ item }}</a>
-            </li>
-          </ol>
+
+        <div id="maindiv">
+            <div class="container">
+                <div style="text-align: center; font-size: 30px;">
+                    Выберите Локацию:
+                </div>
+
+                <div>
+                    <ol>
+                        <li v-for="item in listloc">
+                            <a class="loc" href="#" @click="(event) => choiseloc(item,event)">{{ item }}</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="container">
+                <div style="font-size: 40px;">Количество игроков</div>
+                <input type="range" min="3" max="12" step="1" v-model="value">
+                <label style="font-size: 25px;" v-text="total"></label>
+                <div style="padding-bottom: 40px;padding-top:40px;">
+                    <button class="custom-btn btn-16">Начать игру</button>
+                </div>
+            </div>
+
         </div>
-        
     </div>
-    <div id="maindiv">
-      <div style="font-size: 40px;">Количество игроков</div>
-  </div>
-  <div id="maindiv">
-    <input type="range" min="3" max="12" step="1" v-model="value"> 
-    <label style="font-size: 25px;" v-text="total"></label>
-  </div>
-  <div id="maindiv"><button class="custom-btn btn-16">Начать игру</button></div>
-  
-
-</div>
-
-
-
 
 
     <script src="https://unpkg.com/vue@3"></script>
     <script src="script.js"></script>
-    <script>
-      Vue.createApp({
-        data() {
-          return {
-            listloc:locations,
-            value: 3,
-          }
-        },
-        methods: {
-            choiseloc(name,event) {
-                event.target.style.backgroundColor = 'red'
 
-                
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    listloc: locations,
+                    value: 3,
+                }
+            },
+            methods: {
+                choiseloc(name, event) {
+
+
+                    [].forEach.call(document.querySelectorAll(".loc"), (e, i, a) => {
+                        e.style.backgroundColor = "";
+                    });
+
+                    event.target.style.backgroundColor = 'red';
+                }
+            },
+            computed: {
+                total: function() {
+                    return this.value
+                }
             }
-        },
-        computed: {
-          total: function () {
-          return this.value
-          }
-        }
-      }).mount('#app')
+        }).mount('#app')
     </script>
 
 </body>
