@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>RAFN 2</title>
@@ -14,9 +15,10 @@
 
     <script src="js/scriptdowninf.js"></script>
 </head>
+
 <body>
     <canvas style="position: fixed; overflow: hidden; justify-content:center; align-content:center; margin:0; z-index: -1; height: 100vh;"></canvas>
-    <script src="js/scriptRain.js"></script>
+    <script src="js/scriptsnow.js"></script>
 
     <div id="upnf"></div>
     <script src="upinfo.js"></script>
@@ -66,7 +68,7 @@
             </div>
         </div>
 
-        
+
 
 
 
@@ -91,10 +93,9 @@
         const prgtxt = document.getElementById("progresstext")
         const prg = document.getElementById("progress")
 
-        var now =( new Date().getTime() - 1611508178743) / 1000000000;
+        var now = (new Date().getTime() - 1611508178743) / 1000000000;
         prgtxt.innerHTML = String(now.toFixed(2)) + " / 1000000000  руб."
-        prg.style.width = String(now.toFixed(4))+"%"
-
+        prg.style.width = String(now.toFixed(4)) + "%"
     </script>
 
 
