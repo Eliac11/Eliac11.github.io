@@ -115,10 +115,10 @@ img { display: block; max-width: 100%; }
   margin: 0;
   padding-inline-start: clamp(34px, 7vw, 100px);
   color: #1a2440;
-  font-size: clamp(4.1rem, 8.5vw, 8rem);
+  font-size: clamp(3.5rem, 8.5vw, 8rem);
   font-weight: 780;
   line-height: .96;
-  letter-spacing: -.092em;
+  letter-spacing: -.063em;
   animation: rise .72s cubic-bezier(.2, .75, .2, 1) both;
 }
 
@@ -307,7 +307,7 @@ img { display: block; max-width: 100%; }
   color: var(--ink);
   font-size: clamp(1.3rem, 2.1vw, 1.85rem);
   font-weight: 750;
-  letter-spacing: -.055em;
+  letter-spacing: -.038em;
   line-height: 1.15;
 }
 
@@ -515,7 +515,7 @@ img { display: block; max-width: 100%; }
   margin: 0;
   font-size: clamp(3rem, 7vw, 5.7rem);
   font-weight: 780;
-  letter-spacing: -.09em;
+  letter-spacing: -.061em;
   line-height: .95;
 }
 
@@ -742,6 +742,17 @@ body.viewer-open { overflow: hidden; }
   .viewer__group { gap: 4px; }
   .viewer__button { min-width: 32px; min-height: 36px; padding-inline: 7px; }
   .viewer__media { padding: 8px; }
+}
+
+@media (max-width: 365px) {
+  .viewer__bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+  .viewer__position { justify-self: end; padding-inline-end: 8px; }
+  .viewer__group:last-child {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    padding-top: 5px;
+    border-top: 1px solid var(--line);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

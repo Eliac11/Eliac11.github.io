@@ -89,7 +89,8 @@ if (viewer && typeof viewer.showModal === "function") {
       return;
     }
 
-    const width = Math.max(Number(image.getAttribute("width")), Math.ceil(image.clientWidth * 1.5));
+    const referenceWidth = Math.min(Number(image.getAttribute("width")), 1120);
+    const width = Math.max(referenceWidth, Math.ceil(image.clientWidth * 1.5));
     media.style.setProperty("--zoom-width", width + "px");
     media.classList.add("is-zoomed");
     zoom.textContent = "По ширине";
