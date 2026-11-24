@@ -123,3 +123,63 @@ if (viewer && typeof viewer.showModal === "function") {
     opener.focus({preventScroll: true});
   });
 }
+
+const countdowns = Array.from(document.querySelectorAll("[data-countdown]"), clock => ({
+  deadline: Date.parse(clock.dateTime),
+  digits: clock.querySelectorAll("b"),
+}));
+
+if (countdowns.length) {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const rollTiming = { duration: 420, easing: "cubic-bezier(.22, .8, .26, 1)" };
+  let initialized = false;
+
+  const updateCountdowns = () => {
+    const now = Date.now();
+
+    for (const { deadline, digits } of countdowns) {
+      const seconds = Math.max(0, Math.ceil((deadline - now) / 1000));
+      const values = [Math.floor(seconds / 86400), Math.floor(seconds / 3600) % 24,
+        Math.floor(seconds / 60) % 60, seconds % 60];
+
+      values.forEach((value, index) => {
+        const label = String(value).padStart(2, "0");
+        const field = digits[index];
+        const previous = field.getAttribute("aria-label") ?? field.textContent;
+        if (previous === label && initialized) return;
+
+        field.setAttribute("aria-label", label);
+        field.replaceChildren(...Array.from(label, (digit, position) => {
+          const slot = document.createElement("span");
+          const current = document.createElement("span");
+          slot.className = "release-clock__slot";
+          slot.setAttribute("aria-hidden", "true");
+          current.textContent = digit;
+          slot.append(current);
+
+          const outgoing = previous[position];
+          if (initialized && outgoing && outgoing !== digit && !reducedMotion.matches) {
+            const oldDigit = document.createElement("span");
+            oldDigit.className = "release-clock__outgoing";
+            oldDigit.textContent = outgoing;
+            slot.append(oldDigit);
+
+            current.animate({ transform: ["translateY(100%)", "translateY(0)"] }, rollTiming);
+            const exit = oldDigit.animate({ transform: ["translateY(0)", "translateY(-100%)"] }, rollTiming);
+            exit.onfinish = () => oldDigit.remove();
+          }
+
+          return slot;
+        }));
+      });
+    }
+
+    initialized = true;
+
+    if (countdowns.some(({ deadline }) => deadline > now)) {
+      window.setTimeout(updateCountdowns, 1000 - now % 1000);
+    }
+  };
+
+  updateCountdowns();
+}

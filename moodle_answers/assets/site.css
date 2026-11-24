@@ -762,3 +762,153 @@ body.viewer-open { overflow: hidden; }
     transition: none !important;
   }
 }
+
+.upcoming, .final-release { margin-top: clamp(28px, 5vw, 64px); }
+.upcoming__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.upcoming h2, .final-release h2 { margin: 0; letter-spacing: -.055em; }
+.upcoming h2 { font-size: clamp(26px, 4vw, 38px); }
+.release-clock {
+  display: inline-flex;
+  gap: 4px;
+  padding: 5px;
+  border: 1px solid #8a91b337;
+  border-radius: 16px;
+  background: #a7aec71a;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.release-clock > span {
+  display: grid;
+  justify-items: center;
+  min-width: clamp(43px, 9vw, 60px);
+  padding: 4px;
+  border-radius: 11px;
+  background: #ffffff85;
+  font-size: .67rem;
+}
+.release-clock b {
+  display: flex;
+  font-size: 1.24rem;
+  line-height: 1.15;
+}
+.release-clock__slot {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.release-clock__slot > span { display: block; }
+.release-clock__outgoing { position: absolute; inset: 0; }
+.upcoming-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-content: space-between;
+  gap: 32px;
+  min-height: 146px;
+  padding: clamp(12px, 2vw, 22px);
+  border: 1px solid hsl(var(--hue) 76% 73% / .32);
+  border-radius: clamp(16px, 3vw, 28px);
+  background: linear-gradient(145deg, #fff, hsl(var(--hue) 80% 94%));
+  box-shadow: 0 12px 30px hsl(var(--hue) 50% 40% / .09);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.upcoming-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 75%;
+  aspect-ratio: 1;
+  right: -21%;
+  bottom: -60%;
+  border-radius: 50%;
+  background: conic-gradient(from 25deg, #fff9, hsl(var(--hue) 85% 68% / .5), #fff9);
+  box-shadow: 0 0 0 10px #fff5, 0 0 0 23px #fff3;
+}
+.upcoming-card strong { font-size: clamp(19px, 3vw, 28px); letter-spacing: -.045em; }
+.release-badge {
+  justify-self: start;
+  display: inline-flex;
+  width: max-content;
+  padding: 5px 9px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: .69rem;
+  font-weight: 650;
+}
+.upcoming-card .release-badge { color: hsl(var(--hue) 52% 34%); }
+.final-release {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(265px, 36vw, 400px);
+  display: grid;
+  align-items: center;
+  border: 1px solid #8c8fbc70;
+  border-radius: clamp(24px, 5vw, 46px);
+  background: linear-gradient(115deg, #090b20 24%, #181447 72%, #261953);
+  color: #fff;
+  box-shadow: 0 24px 56px #27255644, inset 0 1px #ffffff30;
+}
+.final-release__content {
+  padding: clamp(20px, 6vw, 70px);
+  width: fit-content;
+}
+.final-release h2 {
+  margin: 12px 0 22px;
+  font-size: clamp(38px, 7.5vw, 88px);
+  line-height: .98;
+  text-wrap: balance;
+}
+.final-release .release-badge { color: #dcd9ff; background: #ffffff16; }
+.final-release .release-clock { background: #10102fcc; }
+.final-release .release-clock > span { background: #b9aaff25; }
+.final-release__art {
+  position: absolute;
+  z-index: -1;
+  width: clamp(260px, 65%, 780px);
+  aspect-ratio: 1;
+  right: -12%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: radial-gradient(ellipse, #9470ff55, transparent 68%);
+}
+.final-release__art::before, .final-release__art::after {
+  content: "";
+  position: absolute;
+  inset: 16% 9%;
+  border-radius: 50%;
+  transform: rotate(-31deg) scaleY(.55);
+}
+.final-release__art::before {
+  border: clamp(3px, .65vw, 9px) solid transparent;
+  background: linear-gradient(145deg, #18163d, #381f67) padding-box,
+    conic-gradient(from 40deg, #765fff, #9eeeff, #fff, #ef99ff, #765fff) border-box;
+  box-shadow: 0 0 28px #7e70ffb0, 0 0 76px #b15cff8c, inset 0 0 36px #8580fb80;
+  animation: release-orbit 7s ease-in-out infinite alternate;
+}
+.final-release__art::after {
+  inset: 6% 1%;
+  border: 1px solid #b0abff77;
+  box-shadow: 0 0 0 14px #a8aaff16, 0 0 0 32px #acabff13;
+}
+@keyframes release-orbit {
+  to { transform: rotate(-23deg) scaleY(.66); filter: hue-rotate(32deg) brightness(1.2); }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .upcoming-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px hsl(var(--hue) 55% 40% / .17);
+  }
+}
+@media (max-width: 580px) {
+  .upcoming-card { min-height: 112px; gap: 16px; }
+  .final-release__art { right: -28%; opacity: .65; }
+}
