@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 :root {
   color-scheme: light;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -912,3 +914,31 @@ body.viewer-open { overflow: hidden; }
   .upcoming-card { min-height: 112px; gap: 16px; }
   .final-release__art { right: -28%; opacity: .65; }
 }
+
+.answer-disclaimer {
+  margin-top: 24px;
+  padding-block: clamp(104px, 15vw, 184px) clamp(36px, 6vw, 72px);
+  background:
+    radial-gradient(ellipse at 50% 100%, #7288e82b, transparent 70%) bottom / 100% 156px no-repeat,
+    linear-gradient(180deg, transparent, #d8deed 22px, #747e96 56px, #171c2a 100px, #0c0f17 100%);
+  color: #bac3d8;
+  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-size: .5rem;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+.answer-disclaimer__inner {
+  padding-top: 16px;
+  border-top: 1px solid #c5cfff35;
+}
+
+.answer-disclaimer h2 {
+  margin: 0 0 8px;
+  font-size: inherit;
+  font-weight: 400;
+  color: #edf0fa;
+}
+
+.answer-disclaimer p { margin: 0 0 8px; }
+.answer-disclaimer p:last-child { margin-bottom: 0; }
