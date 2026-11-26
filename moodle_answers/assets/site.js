@@ -124,61 +124,85 @@ if (viewer && typeof viewer.showModal === "function") {
   });
 }
 
+const countdownUnits = [
+  { seconds: 86400 },
+  { seconds: 3600, cycle: 24 },
+  { seconds: 60, cycle: 60 },
+  { seconds: 1, cycle: 60 },
+];
+
 const countdowns = Array.from(document.querySelectorAll("[data-countdown]"), clock => ({
   deadline: Date.parse(clock.dateTime),
-  digits: clock.querySelectorAll("b"),
+  fields: Array.from(clock.querySelectorAll("b"), element => ({ element })),
 }));
 
 if (countdowns.length) {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const rollTiming = { duration: 420, easing: "cubic-bezier(.22, .8, .26, 1)" };
-  let initialized = false;
 
   const updateCountdowns = () => {
     const now = Date.now();
+    let nextTick = Infinity;
 
-    for (const { deadline, digits } of countdowns) {
-      const seconds = Math.max(0, Math.ceil((deadline - now) / 1000));
-      const values = [Math.floor(seconds / 86400), Math.floor(seconds / 3600) % 24,
-        Math.floor(seconds / 60) % 60, seconds % 60];
+    for (const { deadline, fields } of countdowns) {
+      const remaining = Math.max(0, deadline - now);
+      if (remaining > 0) nextTick = Math.min(nextTick, remaining % 1000 || 1000);
+      const secondsLeft = Math.ceil(remaining / 1000);
 
-      values.forEach((value, index) => {
-        const label = String(value).padStart(2, "0");
-        const field = digits[index];
-        const previous = field.getAttribute("aria-label") ?? field.textContent;
-        if (previous === label && initialized) return;
+      fields.forEach((field, index) => {
+        const { seconds, cycle } = countdownUnits[index];
+        const total = Math.floor(secondsLeft / seconds);
+        const value = cycle ? total % cycle : total;
+        const label = String(value).padStart(field.slots?.length ?? 2, "0");
+        if (field.label !== label) {
+          field.label = label;
+          field.element.setAttribute("aria-label", label);
+        }
 
-        field.setAttribute("aria-label", label);
-        field.replaceChildren(...Array.from(label, (digit, position) => {
-          const slot = document.createElement("span");
-          const current = document.createElement("span");
-          slot.className = "release-clock__slot";
-          slot.setAttribute("aria-hidden", "true");
-          current.textContent = digit;
-          slot.append(current);
+        if (!field.slots || field.slots.length !== label.length) {
+          field.slots = Array.from(label, () => {
+            const element = document.createElement("span");
+            element.className = "release-clock__slot";
+            element.setAttribute("aria-hidden", "true");
+            return { element };
+          });
+          field.element.replaceChildren(...field.slots.map(slot => slot.element));
+        }
 
-          const outgoing = previous[position];
-          if (initialized && outgoing && outgoing !== digit && !reducedMotion.matches) {
-            const oldDigit = document.createElement("span");
-            oldDigit.className = "release-clock__outgoing";
-            oldDigit.textContent = outgoing;
-            slot.append(oldDigit);
+        field.slots.forEach((slot, position) => {
+          const place = 10 ** (label.length - position - 1);
+          const lower = Math.floor(value / place) * place;
+          const upper = Math.min(lower + place, cycle ?? Infinity);
+          const group = total - value + lower;
+          const animate = group > 0 && !reducedMotion.matches;
+          if (slot.group === group && slot.animate === animate) return;
 
-            current.animate({ transform: ["translateY(100%)", "translateY(0)"] }, rollTiming);
-            const exit = oldDigit.animate({ transform: ["translateY(0)", "translateY(-100%)"] }, rollTiming);
-            exit.onfinish = () => oldDigit.remove();
-          }
+          slot.group = group;
+          slot.animate = animate;
+          const currentDigit = document.createElement("span");
+          currentDigit.textContent = label[position];
+          slot.element.replaceChildren(currentDigit);
+          if (!animate) return;
 
-          return slot;
-        }));
+          const nextTotal = group - 1;
+          const nextValue = cycle ? nextTotal % cycle : nextTotal;
+          const nextDigit = document.createElement("span");
+          nextDigit.className = "release-clock__incoming";
+          nextDigit.textContent = String(Math.floor(nextValue / place) % 10);
+          slot.element.append(nextDigit);
+
+          // Each digit finishes its own roll at the lower boundary of its group.
+          const duration = (upper - lower) * seconds * 1000;
+          const elapsed = ((total - value + upper) * seconds - 1) * 1000 - remaining;
+          const timing = { duration, easing: "linear", fill: "both" };
+          const roll = currentDigit.animate({ transform: ["translateY(0)", "translateY(-100%)"] }, timing);
+          const enter = nextDigit.animate({ transform: ["translateY(100%)", "translateY(0)"] }, timing);
+          roll.currentTime = elapsed;
+          enter.currentTime = elapsed;
+        });
       });
     }
 
-    initialized = true;
-
-    if (countdowns.some(({ deadline }) => deadline > now)) {
-      window.setTimeout(updateCountdowns, 1000 - now % 1000);
-    }
+    if (Number.isFinite(nextTick)) window.setTimeout(updateCountdowns, nextTick);
   };
 
   updateCountdowns();

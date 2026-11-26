@@ -806,7 +806,7 @@ body.viewer-open { overflow: hidden; }
   overflow: hidden;
 }
 .release-clock__slot > span { display: block; }
-.release-clock__outgoing { position: absolute; inset: 0; }
+.release-clock__incoming { position: absolute; inset: 0; }
 .upcoming-card {
   position: relative;
   isolation: isolate;
