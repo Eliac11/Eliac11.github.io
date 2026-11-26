@@ -55,6 +55,26 @@
 
   const form = dialog.querySelector("form");
   const field = dialog.querySelector("input");
+  const cellGrid = dialog.querySelector("[data-promo-cells]");
+  const codeLength = 10;
+  const cells = Array.from({ length: codeLength }, () => {
+    const cell = document.createElement("span");
+    cell.className = "promo-code__cell";
+    return cell;
+  });
+  cellGrid.append(...cells);
+
+  const normalizeCode = value => value.replace(/[^a-z0-9]/gi, "").slice(0, codeLength).toUpperCase();
+  const renderCells = () => {
+    const start = field.selectionStart;
+    const end = field.selectionEnd;
+    const active = Math.min(start, cells.length - 1);
+    for (const [index, cell] of cells.entries()) {
+      cell.textContent = field.value[index] ?? "";
+      cell.classList.toggle("is-active", index === active && start === end);
+      cell.classList.toggle("is-selected", index >= start && index < end);
+    }
+  };
   const message = dialog.querySelector("[data-promo-message]");
   const submit = form.querySelector("[type=submit]");
   const routes = fromBase64("EEdlsnFVhYHFr962C+4dLl0ual9IxQU489CMyQ8fzmxAlZjH09gsBV3m3OKruseSXBordwDKq83MR+Ma14IBM2S+8l1jIGZuxHjicpQQuoaapDmCDmas2e5hUIB5JFJNEdiCTqGzybP9Gge8jfiagxL4UDtg9EE++Yn1KcT+n/1vI7Cfj76H/ucuVXzXtYp5RyyX+HD2u6twoOIaZub9XzrTNpH1H3FHjtfJIcaCbI5pRqm+IQ==");
@@ -70,6 +90,7 @@
       message.textContent = "";
       submit.disabled = false;
       dialog.showModal();
+      renderCells();
     });
   }
 
@@ -80,19 +101,44 @@
     if (event.clientX < rect.left || event.clientX > rect.right ||
         event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
   });
+  for (const eventName of ["focus", "keyup", "select", "selectionchange"]) {
+    field.addEventListener(eventName, renderCells);
+  }
+
+  field.addEventListener("click", event => {
+    if (!event.detail || field.selectionStart !== field.selectionEnd) return;
+    const index = cells.findIndex(cell => event.clientX <= cell.getBoundingClientRect().right);
+    const position = index < 0 ? field.value.length : Math.min(index, field.value.length);
+    field.setSelectionRange(position, position);
+    renderCells();
+  });
+
   field.addEventListener("input", () => {
+    const normalized = normalizeCode(field.value);
+    if (field.value !== normalized) {
+      const position = normalizeCode(field.value.slice(0, field.selectionStart)).length;
+      field.value = normalized;
+      field.setSelectionRange(position, position);
+    }
+    renderCells();
     message.textContent = "";
     field.removeAttribute("aria-invalid");
   });
 
   form.addEventListener("submit", async event => {
     event.preventDefault();
+    if (field.value.length !== codeLength) {
+      message.textContent = "Введите все 10 символов.";
+      field.setAttribute("aria-invalid", "true");
+      field.focus();
+      return;
+    }
     const currentOpening = opening;
     submit.disabled = true;
     message.textContent = "";
 
     try {
-      const key = await deriveKey(field.value.trim());
+      const key = await deriveKey(field.value);
       const destinations = await decrypt(routes, key);
       if (!dialog.open || opening !== currentOpening) return;
       sessionStorage.setItem(storageKey, toBase64(key));

@@ -107,8 +107,11 @@
     <h2 id="promo-title">Введите промокод</h2>
     <form>
       <label class="sr-only" for="promo-code">Промокод</label>
-      <input class="promo-dialog__input" id="promo-code" type="password" placeholder="Промокод" autocomplete="off"
-        spellcheck="false" required autofocus aria-describedby="promo-message">
+      <div class="promo-code">
+        <input class="promo-code__input" id="promo-code" type="text" autocomplete="off"
+          autocapitalize="characters" spellcheck="false" required autofocus aria-describedby="promo-message">
+        <div class="promo-code__cells" data-promo-cells aria-hidden="true"></div>
+      </div>
       <p class="promo-dialog__message" id="promo-message" role="status" data-promo-message></p>
       <button class="promo-dialog__submit" type="submit">Открыть тест</button>
     </form>
