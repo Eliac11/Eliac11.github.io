@@ -7,6 +7,7 @@
   <title>Ответы по экономике</title>
   <link rel="stylesheet" href="./assets/site.css">
   <script src="./assets/site.js" defer></script>
+  <script src="./assets/promo.js" defer></script>
 </head>
 <body class="home">
   <header class="site-header">
@@ -68,27 +69,24 @@
     <section class="upcoming" aria-labelledby="upcoming-title">
       <header class="upcoming__header">
         <h2 id="upcoming-title">Тесты 5–8</h2>
-        <time class="release-clock" data-countdown datetime="2026-11-28T19:43:42Z">
-          <span><b>04</b> дн.</span><span><b>00</b> ч</span><span><b>00</b> мин</span><span><b>00</b> сек</span>
-        </time>
       </header>
       <div class="test-grid">
-        <div class="upcoming-card" style="--hue: 222">
-          <span class="release-badge">Будет скоро</span>
+        <button class="upcoming-card" type="button" data-promo-test="5" aria-haspopup="dialog" style="--hue: 222">
+          <span class="release-badge">По промокоду</span>
           <strong>Тест 5</strong>
-        </div>
-        <div class="upcoming-card" style="--hue: 263">
-          <span class="release-badge">Будет скоро</span>
+        </button>
+        <button class="upcoming-card" type="button" data-promo-test="6" aria-haspopup="dialog" style="--hue: 263">
+          <span class="release-badge">По промокоду</span>
           <strong>Тест 6</strong>
-        </div>
-        <div class="upcoming-card" style="--hue: 168">
-          <span class="release-badge">Будет скоро</span>
+        </button>
+        <button class="upcoming-card" type="button" data-promo-test="7" aria-haspopup="dialog" style="--hue: 168">
+          <span class="release-badge">По промокоду</span>
           <strong>Тест 7</strong>
-        </div>
-        <div class="upcoming-card" style="--hue: 326">
-          <span class="release-badge">Будет скоро</span>
+        </button>
+        <button class="upcoming-card" type="button" data-promo-test="8" aria-haspopup="dialog" style="--hue: 326">
+          <span class="release-badge">По промокоду</span>
           <strong>Тест 8</strong>
-        </div>
+        </button>
       </div>
     </section>
 
@@ -104,5 +102,16 @@
     </section>
   </main>
 
+  <dialog class="promo-dialog" aria-labelledby="promo-title" data-promo-dialog>
+    <button class="promo-dialog__close" type="button" aria-label="Закрыть" data-promo-close>×</button>
+    <h2 id="promo-title">Введите промокод</h2>
+    <form>
+      <label class="sr-only" for="promo-code">Промокод</label>
+      <input class="promo-dialog__input" id="promo-code" type="password" placeholder="Промокод" autocomplete="off"
+        spellcheck="false" required autofocus aria-describedby="promo-message">
+      <p class="promo-dialog__message" id="promo-message" role="status" data-promo-message></p>
+      <button class="promo-dialog__submit" type="submit">Открыть тест</button>
+    </form>
+  </dialog>
 </body>
 </html>

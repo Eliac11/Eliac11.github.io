@@ -942,3 +942,83 @@ body.viewer-open { overflow: hidden; }
 
 .answer-disclaimer p { margin: 0 0 8px; }
 .answer-disclaimer p:last-child { margin-bottom: 0; }
+
+.upcoming button.upcoming-card {
+  width: 100%;
+  color: inherit;
+  text-align: start;
+}
+
+.promo-dialog {
+  width: min(440px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  padding: clamp(24px, 6vw, 38px);
+  overflow: auto;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  background: radial-gradient(ellipse at 88% 0, #e1e3ff, transparent 62%), #fbfcff;
+  color: var(--ink);
+  box-shadow: 0 28px 90px #151d524d, 0 2px 12px #151d521a;
+}
+
+.promo-dialog[open] { animation: promo-arrive .62s cubic-bezier(.18, .85, .29, 1.13) both; }
+.promo-dialog::backdrop {
+  background: #15193670;
+  backdrop-filter: blur(13px);
+  animation: promo-backdrop .35s ease both;
+}
+.promo-dialog h2 {
+  margin: 0 33px 23px 0;
+  font-size: clamp(24px, 6vw, 35px);
+  letter-spacing: -.055em;
+  line-height: 1.06;
+}
+.promo-dialog__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #e4e7f4;
+  color: #343d59;
+  font-size: 22px;
+}
+.promo-dialog__input,
+.promo-dialog__submit {
+  width: 100%;
+  min-height: 48px;
+  padding: 11px 15px;
+  border-radius: 14px;
+}
+.promo-dialog__input {
+  border: 1px solid #c7cfe7;
+  background: #fff;
+  font: inherit;
+  letter-spacing: .065em;
+}
+.promo-dialog__input[aria-invalid="true"] { border-color: #b31f49; }
+.promo-dialog__message {
+  min-height: 1.5em;
+  margin: 8px 0;
+  color: #a22244;
+  font-size: .82rem;
+}
+.promo-dialog__submit {
+  border: 0;
+  background: linear-gradient(130deg, #2563eb, #6149d3);
+  color: white;
+  font-weight: 650;
+  box-shadow: 0 8px 18px #3c57d84a;
+}
+.promo-dialog__submit:disabled { opacity: .65; }
+@keyframes promo-arrive {
+  from { opacity: 0; transform: translateY(-30vh) scale(.78); }
+  65% { opacity: 1; }
+  to { transform: translateY(0) scale(1); }
+}
+@keyframes promo-backdrop { from { opacity: 0; } }
+
+.promo-loading { padding-block: clamp(72px, 15vw, 160px); }
+.promo-loading a { color: var(--accent); }
