@@ -1,5 +1,6 @@
 (() => {
   const storageKey = "moodle-promo-key";
+  const finalStorageKey = "moodle-final-promo-key";
   const encoder = new TextEncoder();
   const decoder = new TextDecoder();
   const fromBase64 = text => Uint8Array.from(atob(text), char => char.charCodeAt(0));
@@ -25,7 +26,7 @@
   const loadStatus = document.querySelector("[data-gallery-status]");
   if (loadStatus) {
     const showGallery = async () => {
-      const stored = sessionStorage.getItem(storageKey);
+      const stored = sessionStorage.getItem(loadStatus.dataset.galleryStatus === "final" ? finalStorageKey : storageKey);
       if (!stored) return location.replace("../");
       const response = await fetch("./gallery.bin");
       if (!response.ok) throw new Error("Gallery download failed");
@@ -56,13 +57,17 @@
   const form = dialog.querySelector("form");
   const field = dialog.querySelector("input");
   const cellGrid = dialog.querySelector("[data-promo-cells]");
-  const codeLength = 10;
-  const cells = Array.from({ length: codeLength }, () => {
-    const cell = document.createElement("span");
-    cell.className = "promo-code__cell";
-    return cell;
-  });
-  cellGrid.append(...cells);
+  let codeLength = 10;
+  let cells = [];
+
+  const buildCells = () => {
+    cells = Array.from({ length: codeLength }, () => {
+      const cell = document.createElement("span");
+      cell.className = "promo-code__cell";
+      return cell;
+    });
+    cellGrid.replaceChildren(...cells);
+  };
 
   const normalizeCode = value => value.replace(/[^a-z0-9]/gi, "").slice(0, codeLength).toUpperCase();
   const renderCells = () => {
@@ -77,13 +82,18 @@
   };
   const message = dialog.querySelector("[data-promo-message]");
   const submit = form.querySelector("[type=submit]");
-  const routes = fromBase64("EEdlsnFVhYHFr962C+4dLl0ual9IxQU489CMyQ8fzmxAlZjH09gsBV3m3OKruseSXBordwDKq83MR+Ma14IBM2S+8l1jIGZuxHjicpQQuoaapDmCDmas2e5hUIB5JFJNEdiCTqGzybP9Gge8jfiagxL4UDtg9EE++Yn1KcT+n/1vI7Cfj76H/ucuVXzXtYp5RyyX+HD2u6twoOIaZub9XzrTNpH1H3FHjtfJIcaCbI5pRqm+IQ==");
+  const routes = fromBase64("VZZNUjTj1cBIpR30TDf/DfdD3RA2WOWdnW2k9JkDPKmlH+cnJ2yqGkQTNfpYo0yYrmIioQQsIxIM6gAChCFIrZb3ZqBpxDzuxYyv9TA/jniFjmy9OUiRLmUkoe0bPglvboRx91JScgOr6WL27/sAPmZ7KBb9M0JOJPS1YdjqKC1xAqdIwvjI4C5W4IRaciC2GqdTpgb+1MfSbmOU6Ze6K4qiUP/N5ExrUoB5/6EjilasbxFa2A==");
+  const finalRoute = fromBase64("RmSqvOW9V2ja7nFyYrybxuUGrpZAoOSGTGblLWp4hGGrOHcRCw0NYJ3U4bPm4RNKp9Gn8Q5alEvSa5JkyYa+5p0=");
   let test = 0;
   let opening = 0;
 
   for (const button of document.querySelectorAll("[data-promo-test]")) {
     button.addEventListener("click", () => {
       test = Number(button.dataset.promoTest);
+      const isFinal = test === 9;
+      codeLength = isFinal ? 14 : 10;
+      dialog.classList.toggle("promo-dialog--final", isFinal);
+      buildCells();
       opening += 1;
       field.value = "";
       field.removeAttribute("aria-invalid");
@@ -107,8 +117,19 @@
 
   field.addEventListener("click", event => {
     if (!event.detail || field.selectionStart !== field.selectionEnd) return;
-    const index = cells.findIndex(cell => event.clientX <= cell.getBoundingClientRect().right);
-    const position = index < 0 ? field.value.length : Math.min(index, field.value.length);
+    let nearest = 0;
+    let shortest = Infinity;
+    cells.forEach((cell, index) => {
+      const rect = cell.getBoundingClientRect();
+      const dx = event.clientX - (rect.left + rect.width / 2);
+      const dy = event.clientY - (rect.top + rect.height / 2);
+      const distance = dx * dx + dy * dy;
+      if (distance < shortest) {
+        shortest = distance;
+        nearest = index;
+      }
+    });
+    const position = Math.min(nearest, field.value.length);
     field.setSelectionRange(position, position);
     renderCells();
   });
@@ -128,7 +149,7 @@
   form.addEventListener("submit", async event => {
     event.preventDefault();
     if (field.value.length !== codeLength) {
-      message.textContent = "Введите все 10 символов.";
+      message.textContent = `Введите все ${codeLength} символов.`;
       field.setAttribute("aria-invalid", "true");
       field.focus();
       return;
@@ -138,11 +159,13 @@
     message.textContent = "";
 
     try {
+      const isFinal = test === 9;
+      const index = test - 5;
       const key = await deriveKey(field.value);
-      const destinations = await decrypt(routes, key);
+      const destination = isFinal ? await decrypt(finalRoute, key) : (await decrypt(routes, key))[index];
       if (!dialog.open || opening !== currentOpening) return;
-      sessionStorage.setItem(storageKey, toBase64(key));
-      location.assign(destinations[test - 5]);
+      sessionStorage.setItem(isFinal ? finalStorageKey : storageKey, toBase64(key));
+      location.assign(destination);
     } catch {
       if (!dialog.open || opening !== currentOpening) return;
       message.textContent = "Не удалось открыть тест. Проверьте промокод.";

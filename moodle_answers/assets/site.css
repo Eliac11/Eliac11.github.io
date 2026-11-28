@@ -1053,3 +1053,29 @@ body.viewer-open { overflow: hidden; }
 
 .promo-loading { padding-block: clamp(72px, 15vw, 160px); }
 .promo-loading a { color: var(--accent); }
+
+.final-release__open {
+  display: block;
+  min-height: 46px;
+  margin-top: 16px;
+  padding: 10px 17px;
+  border: 1px solid #d1ccff65;
+  border-radius: 14px;
+  background: linear-gradient(150deg, #dcd8ff, #b5a6ff);
+  color: #171336;
+  font-weight: 650;
+  box-shadow: 0 7px 22px #8d73ff32;
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.final-release__open:hover {
+  background: #eae5ff;
+  box-shadow: 0 9px 28px #b39cff55;
+  transform: translateY(-2px);
+}
+.final-release__open:focus-visible { outline-color: #ded8ff; }
+
+.promo-dialog--final { width: min(530px, calc(100% - 32px)); }
+.promo-dialog--final .promo-code__cells { grid-template-columns: repeat(14, minmax(0, 1fr)); }
+@media (max-width: 460px) {
+  .promo-dialog--final .promo-code__cells { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+}
